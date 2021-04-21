@@ -3,11 +3,15 @@
 
 ### Setup
 ##### Run server
-`cd server`
-`npm install`
-`npm run devStart`
+```sh
+cd server`
+npm install
+npm run devStart
+```
 
 ##### Run client
-`cd client`
-`npm install`
-`npm run start`
+```sh
+cd client
+npm install
+npm run start
+```
