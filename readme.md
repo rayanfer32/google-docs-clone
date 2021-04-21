@@ -4,7 +4,7 @@
 ### Setup
 ##### Run server
 ```sh
-cd server`
+cd server
 npm install
 npm run devStart
 ```
