@@ -1,9 +1,10 @@
-import React,{ useCallback,  useState, useEffect, useRef} from 'react'
+import React,{ useCallback,  useState, useEffect } from 'react'
 import Quill from 'quill'
 import "quill/dist/quill.snow.css"
 import  { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL
 const SAVE_INTERVAL_MS = 2000
 const TOOLBAR_OPTIONS = [
     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -31,7 +32,7 @@ export default function TextEditor() {
     const [quill, setQuill] = useState()
     
     useEffect(() => {
-        const s = io("http://localhost:3001")
+        const s = io(SERVER_URL)
         setSocket(s)
 
         return () => {
