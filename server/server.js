@@ -22,20 +22,20 @@ mongoose.connect(DB_URL, {
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true
-}).then( () => {
+}).then(() => {
     console.log("db connection succesfull")
 })
-.catch(err => {
-    console.log("db not connected")
+    .catch(err => {
+        console.log("db not connected")
 
-})
-    
+    })
+
 
 // start socket.io server 
-const io = require('socket.io')(SERVER_PORT,{
+const io = require('socket.io')(SERVER_PORT, {
     cors: {
         origin: '*',
-        methods: ["GET","POST"],
+        methods: ["GET", "POST"],
     }
 })
 
@@ -53,19 +53,19 @@ io.on("connection", socket => {
         })
 
         socket.on("save-document", async data => {
-            await Document.findByIdAndUpdate(documentId, {data} )
+            await Document.findByIdAndUpdate(documentId, { data })
         })
-    
+
     })
 })
 
 
 // create new document if id does not exist
-async function findOrCreateDocument(id){
-    if(id == null ) return 
+async function findOrCreateDocument(id) {
+    if (id == null) return
 
     const document = await Document.findById(id)
-    if (document) return document 
+    if (document) return document
     return await Document.create({
         _id: id,
         data: defaultDocumentData
